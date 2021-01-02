@@ -1,0 +1,40 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "inputDocument",
+      "databaseName": "dbbooks",
+      "collectionName": "items",
+      "connectionStringSetting": "cdb-vue-todos_DOCUMENTDB",
+      "partitionKey": "/all",
+      "direction": "in",
+      "sqlQuery": "select * from c where c.id = {id}"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "outputDocument",
+      "databaseName": "dbbooks",
+      "collectionName": "items",
+      "createIfNotExists": false,
+      "connectionStringSetting": "cdb-vue-todos_DOCUMENTDB",
+      "partitionKey": "/all",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
